@@ -11,8 +11,10 @@ import javax.validation.constraints.Positive;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
@@ -42,5 +44,9 @@ public class BeerDto {
     // yyyy-MM-dd'T'HH:mm:ssZ
     @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createdDate;
+    
     private OffsetDateTime lastUpdatedDate;
+    
+    @JsonSerialize(using = LocalDateSerializer.class) // Another way to format
+    private LocalDate myLocalDate;
 }
