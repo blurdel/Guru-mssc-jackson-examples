@@ -4,8 +4,15 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class BaseTest {
 
+	@Autowired
+	ObjectMapper mapper;
+	
 	BeerDto getBeerDto() {
 		return BeerDto.builder()
 				.beerName("BeerName")

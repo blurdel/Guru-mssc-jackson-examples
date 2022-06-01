@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -19,6 +23,7 @@ import java.util.UUID;
 @Builder
 public class BeerDto {
 
+	@JsonProperty("beerId") // Warning!!! This overrides the naming strategy (snake, kebab) can break serial/deserialization if not careful
     @Null
     private UUID id;
 
@@ -31,7 +36,11 @@ public class BeerDto {
     @Positive
     private Long upc;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING) // Can format as String vs number
     private BigDecimal price;
+    
+    // yyyy-MM-dd'T'HH:mm:ssZ
+    @JsonFormat(pattern = "yyyy-MM-dd", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime createdDate;
     private OffsetDateTime lastUpdatedDate;
 }

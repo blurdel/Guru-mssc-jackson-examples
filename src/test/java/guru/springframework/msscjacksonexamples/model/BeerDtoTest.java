@@ -3,21 +3,15 @@ package guru.springframework.msscjacksonexamples.model;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @JsonTest
 class BeerDtoTest extends BaseTest {
-
-	@Autowired
-	ObjectMapper mapper;
-	
 	
 	@Test
 	void testSerializeDto() throws JsonProcessingException {
@@ -37,7 +31,6 @@ class BeerDtoTest extends BaseTest {
 		BeerDto beer = mapper.readValue(json, BeerDto.class);
 		
 		System.out.println(beer);
-				
 	}
 	
 }
